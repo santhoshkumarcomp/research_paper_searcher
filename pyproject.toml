@@ -1,0 +1,25 @@
+[project]
+name = "research_paper_searcher"
+version = "0.1.0"
+description = "A  Python program to fetch research papers based on a user-specified query. The program must identify papers with at least one author affiliated with a pharmaceutical or biotech company and return the results as a CSV file"
+authors = [
+    {name = "santhoshkumarcomp",email = "santhoshkumarcomp@gmail.com"}
+]
+readme = "README.md"
+packages = [{ include = "research_paper_searcher" }] 
+requires-python = ">=3.13"
+dependencies = [
+    "flask (>=3.1.1,<4.0.0)",
+    "requests (>=2.32.4,<3.0.0)",
+    "xmltodict (>=0.14.2,<0.15.0)"
+]
+
+[tool.poetry.scripts]
+get-papers-list = "research_paper_searcher.cli:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
