@@ -122,6 +122,10 @@ def get_pubmed_csv(search):
                   result.append(article)
                   pmid = article['MedlineCitation'].get('PMID', {}).get('#text', 'N/A')
                   title = article['MedlineCitation'].get('Article', {}).get('ArticleTitle','N/A')
+                  if isinstance(title,dict):
+                      title1 = title.get('#text', 'N/A')
+                  else:
+                      title1 = title
                   journal = article['MedlineCitation'].get('Article', {}).get('Journal', {})
                   journal_issue = article['MedlineCitation'].get('Article',{}).get('Journal', {}).get('JournalIssue',{})
                   jtitle = journal.get('Title', 'N/A')
@@ -141,9 +145,9 @@ def get_pubmed_csv(search):
                         for email in emails:
                           if match_author_to_email(aut,email):
                               e.append(email)
-                      row.append([pmid, title,jtitle,d,a,(',').join(e)])
+                      row.append([pmid, title1,jtitle,d,a,(',').join(e)])
                   else:
-                      row.append([pmid, title,jtitle,d,a])
+                      row.append([pmid, title1,jtitle,d,a])
                   
                   break
       
